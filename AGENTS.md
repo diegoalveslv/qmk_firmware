@@ -7,6 +7,8 @@
 - Converter: `sparkfun_pm2040`, set in the personal keymap's `rules.mk`.
 - Do not build or flash the default AVR/Caterina target.
 - Both halves were flashed successfully on 2026-09-24.
+- VIA protocol 13 is enabled with five dynamic layers; use `https://usevia.app`.
+- Vial is not enabled.
 
 ## Personal Keymap
 
@@ -24,6 +26,8 @@ qmk flash -kb sofle/rev1 -km dsilva
 Flash both halves separately after firmware changes. Connect USB directly to the half being flashed.
 
 To enter the RP2040 bootloader reliably, unplug USB, hold the top-left physical key on that half, reconnect USB, hold for three seconds, then release. The controller should appear as `RPI-RP2`.
+
+The firmware defaults to `MASTER_LEFT`, so connect USB to the physical left half for normal use. When USB is connected directly to the physical right half for flashing, its handedness is reversed and the physical rightmost key is interpreted as `Esc`; this can be used with `LOWER` + `RAISE` to trigger `QK_BOOT`.
 
 Never connect or disconnect the TRRS cable while either half has USB power. Unplug USB before moving cables.
 

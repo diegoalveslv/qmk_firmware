@@ -1,2 +1,3 @@
 TRI_LAYER_ENABLE = yes
 CONVERT_TO = sparkfun_pm2040
+VIA_ENABLE = yes
