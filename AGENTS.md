@@ -16,6 +16,11 @@
 - The current baseline is copied from QMK's default Sofle keymap.
 - It includes QWERTY, Colemak, `LOWER`, `RAISE`, combined `ADJUST`, OLED support, and encoder controls.
 
+## Saved VIA Layouts
+
+- Main Sofle: `keyboards/sofle/keymaps/dsilva/layouts/main_sofle_layout.json`
+- Ninja Sofle: `keyboards/sofle/keymaps/dsilva/layouts/ninja_sofle_layout.json`
+
 ## Commands
 
 ```bash

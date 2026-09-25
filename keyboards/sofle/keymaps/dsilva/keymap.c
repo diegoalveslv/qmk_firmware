@@ -1,6 +1,9 @@
 // Copyright 2023 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include QMK_KEYBOARD_H
+#include "dynamic_keymap.h"
+
+#define ENCODER_MAP_EECONFIG_MAGIC 0x454D4150
 
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
@@ -132,6 +135,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                    _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______
   )
 };
+
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [_QWERTY]  = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_COLEMAK] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_LOWER]   = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_RAISE]   = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_ADJUST]  = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+};
+
+void keyboard_post_init_user(void) {
+    if (eeconfig_read_user() == ENCODER_MAP_EECONFIG_MAGIC) {
+        return;
+    }
+
+    // Encoder data occupied macro storage before ENCODER_MAP_ENABLE was added.
+    for (uint8_t layer = 0; layer < DYNAMIC_KEYMAP_LAYER_COUNT; layer++) {
+        dynamic_keymap_set_encoder(layer, 0, false, KC_VOLD);
+        dynamic_keymap_set_encoder(layer, 0, true, KC_VOLU);
+        dynamic_keymap_set_encoder(layer, 1, false, KC_PGUP);
+        dynamic_keymap_set_encoder(layer, 1, true, KC_PGDN);
+    }
+    eeconfig_update_user(ENCODER_MAP_EECONFIG_MAGIC);
+}
+#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
