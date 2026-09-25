@@ -25,9 +25,9 @@ qmk flash -kb sofle/rev1 -km dsilva
 
 Flash both halves separately after firmware changes. Connect USB directly to the half being flashed.
 
-To enter the RP2040 bootloader reliably, unplug USB, hold the top-left physical key on that half, reconnect USB, hold for three seconds, then release. The controller should appear as `RPI-RP2`.
+To enter the RP2040 bootloader, run `qmk flash` first so it is waiting for `RPI-RP2`, then double-tap the physical reset button on the directly USB-connected half. The controller should appear as `RPI-RP2` and the UF2 will copy automatically.
 
-The firmware defaults to `MASTER_LEFT`, so connect USB to the physical left half for normal use. When USB is connected directly to the physical right half for flashing, its handedness is reversed and the physical rightmost key is interpreted as `Esc`; this can be used with `LOWER` + `RAISE` to trigger `QK_BOOT`.
+Connect USB to the physical left half for normal use. Direct USB on the physical right half is for flashing only; without persistent side identification its keys can map as the left half, so do not rely on a key chord to enter bootloader.
 
 Never connect or disconnect the TRRS cable while either half has USB power. Unplug USB before moving cables.
 
