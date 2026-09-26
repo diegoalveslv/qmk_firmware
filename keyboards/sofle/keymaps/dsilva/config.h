@@ -8,3 +8,9 @@
 #define TRI_LAYER_ADJUST_LAYER 4
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
+
+// The installed encoders emit four pulses per tactile detent.
+#undef ENCODER_RESOLUTION
+#define ENCODER_RESOLUTION 4
+#undef ENCODER_RESOLUTION_RIGHT
+#define ENCODER_RESOLUTION_RIGHT 4

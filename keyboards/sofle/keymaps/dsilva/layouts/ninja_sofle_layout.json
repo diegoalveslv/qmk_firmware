@@ -323,7 +323,7 @@
       ["KC_VOLD", "KC_VOLU"]
     ],
     [
-      ["KC_PGUP", "KC_PGDN"],
+      ["KC_MS_WH_UP", "KC_MS_WH_DOWN"],
       ["KC_PGUP", "KC_PGDN"],
       ["KC_PGUP", "KC_PGDN"],
       ["KC_PGUP", "KC_PGDN"],
